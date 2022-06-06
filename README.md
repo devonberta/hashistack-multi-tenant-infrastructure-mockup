@@ -6,3 +6,5 @@ Repository for tracking a demo environment of hashicorp nomad, consul and vault 
 - consul
 - vagrant
 - bash
+- prometheus
+- grafana
