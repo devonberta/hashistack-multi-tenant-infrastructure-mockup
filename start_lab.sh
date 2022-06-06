@@ -264,7 +264,7 @@ VAULT_ADDR="http://127.0.2.10:8200" VAULT_TOKEN=`cat /vagrant/data/REGION1/AZ1/I
 # Generate intermediate ca certificate
 VAULT_ADDR="http://127.0.2.10:8200" VAULT_TOKEN=`cat /vagrant/data/REGION1/AZ1/INFRA/CONTROL/VAULT/1/init.json | jq -r '.root_token'` vault write -format=json int_consul_ca/intermediate/generate/internal common_name="int_consul_ca.consul Intermediate Authority" | jq -r '.data.csr' > /vagrant/data/REGION1/AZ1/INFRA/CONTROL/CONSUL/Int_cert.csr
 # Sign intermediate ca certificate with root ca certificate
-VAULT_ADDR="http://127.0.2.10:8200" VAULT_TOKEN=`cat /vagrant/data/REGION1/AZ1/INFRA/CONTROL/VAULT/1/init.json | jq -r '.root_token'` vault write -format=json root_consul_ca/root/sign-intermediate csr=@/vagrant/data/REGION1/AZ1/INFRA/CONTROL/CONSUL/Int_cert.csr format=pem_bundle | jq -r '.data.certificate' > @/vagrant/data/REGION1/AZ1/INFRA/CONTROL/CONSUL/intermediate.cert.pem
+VAULT_ADDR="http://127.0.2.10:8200" VAULT_TOKEN=`cat /vagrant/data/REGION1/AZ1/INFRA/CONTROL/VAULT/1/init.json | jq -r '.root_token'` vault write -format=json root_consul_ca/root/sign-intermediate csr=@/vagrant/data/REGION1/AZ1/INFRA/CONTROL/CONSUL/Int_cert.csr format=pem_bundle | jq -r '.data.certificate' > /vagrant/data/REGION1/AZ1/INFRA/CONTROL/CONSUL/intermediate.cert.pem
 # Import signed intermediate certificage back into vault
 VAULT_ADDR="http://127.0.2.10:8200" VAULT_TOKEN=`cat /vagrant/data/REGION1/AZ1/INFRA/CONTROL/VAULT/1/init.json | jq -r '.root_token'` vault write int_consul_ca/intermediate/set-signed certificate=@/vagrant/data/REGION1/AZ1/INFRA/CONTROL/CONSUL/intermediate.cert.pem
 # Create role for generating server certificates for consul
