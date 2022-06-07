@@ -3,8 +3,8 @@
 pkill -f nomad
 pkill -f consul
 pkill -f vault
-
-# Adding ip addresses used in the lab environment
+sleep 5
+#### Adding ip addresses used in the lab environment
 ### Region 1 ###
 ## Availability Zone 1 ##
 # R1-AZ1-INFRA-CONTROL-1
@@ -49,91 +49,93 @@ route add -host 127.0.1.43 dev lo
 
 
 ## Availability Zone 2 ##
-# AZ2-INFRA-CONTROL-1
+# R1-AZ2-INFRA-CONTROL-1
 ip addr add 127.0.2.10 dev lo
 route add -host 127.0.2.10 dev lo
-# AZ2-INFRA-HOST-1
+# R1-AZ2-INFRA-HOST-1
 ip addr add 127.0.2.11 dev lo
 route add -host 127.0.2.11 dev lo
-# AZ2-INFRA-HOST-2
+# R1-AZ2-INFRA-HOST-2
 ip addr add 127.0.2.12 dev lo
 route add -host 127.0.2.12 dev lo
-# AZ2-INFRA-HOST-3
+# R1-AZ2-INFRA-HOST-3
 ip addr add 127.0.2.13 dev lo
 route add -host 127.0.2.13 dev lo
-# AZ2-INFRA-WORKER-1
+# R1-AZ2-INFRA-WORKER-1
 ip addr add 127.0.2.21 dev lo
 route add -host 127.0.2.21 dev lo
-# AZ2-INFRA-WORKER-2
+# R1-AZ2-INFRA-WORKER-2
 ip addr add 127.0.2.22 dev lo
 route add -host 127.0.2.22 dev lo
-# AZ2-INFRA-WORKER-3
+# R1-AZ2-INFRA-WORKER-3
 ip addr add 127.0.2.23 dev lo
 route add -host 127.0.2.23 dev lo
-# AZ2-SERVICE-WORKER-1
+# R1-AZ2-SERVICE-WORKER-1
 ip addr add 127.0.2.31 dev lo
 route add -host 127.0.2.31 dev lo
-# AZ2-SERVICE-WORKER-2
+# R1-AZ2-SERVICE-WORKER-2
 ip addr add 127.0.2.32 dev lo
 route add -host 127.0.2.32 dev lo
-# AZ2-SERVICE-WORKER-3
+# R1-AZ2-SERVICE-WORKER-3
 ip addr add 127.0.2.33 dev lo
 route add -host 127.0.2.33 dev lo
-# AZ2-SERVICE-CONTROL-1
+# R1-AZ2-SERVICE-CONTROL-1
 ip addr add 127.0.2.41 dev lo
 route add -host 127.0.2.41 dev lo
-# AZ2-SERVICE-CONTROL-2
+# R1-AZ2-SERVICE-CONTROL-2
 ip addr add 127.0.2.42 dev lo
 route add -host 127.0.2.42 dev lo
-# AZ2-SERVICE-CONTROL-3
+# R1-AZ2-SERVICE-CONTROL-3
 ip addr add 127.0.2.43 dev lo
 route add -host 127.0.2.43 dev lo
 
 ## Availability Zone 3 ##
-# AZ3-INFRA-CONTROL-1
+# R1-AZ3-INFRA-CONTROL-1
 ip addr add 127.0.3.10 dev lo
 route add -host 127.0.3.10 dev lo
-# AZ3-INFRA-HOST-1
+# R1-AZ3-INFRA-HOST-1
 ip addr add 127.0.3.11 dev lo
 route add -host 127.0.3.11 dev lo
-# AZ3-INFRA-HOST-2
+# R1-AZ3-INFRA-HOST-2
 ip addr add 127.0.3.12 dev lo
 route add -host 127.0.3.12 dev lo
-# AZ3-INFRA-HOST-3
+# R1-AZ3-INFRA-HOST-3
 ip addr add 127.0.3.13 dev lo
 route add -host 127.0.3.13 dev lo
-# AZ3-INFRA-WORKER-1
+# R1-AZ3-INFRA-WORKER-1
 ip addr add 127.0.3.21 dev lo
 route add -host 127.0.3.21 dev lo
-# AZ3-INFRA-WORKER-2
+# R1-AZ3-INFRA-WORKER-2
 ip addr add 127.0.3.22 dev lo
 route add -host 127.0.3.22 dev lo
-# AZ3-INFRA-WORKER-3
+# R1-AZ3-INFRA-WORKER-3
 ip addr add 127.0.3.23 dev lo
 route add -host 127.0.3.23 dev lo
-# AZ3-SERVICE-WORKER-1
+# R1-AZ3-SERVICE-WORKER-1
 ip addr add 127.0.3.31 dev lo
 route add -host 127.0.3.31 dev lo
-# AZ3-SERVICE-WORKER-2
+# R1-AZ3-SERVICE-WORKER-2
 ip addr add 127.0.3.32 dev lo
 route add -host 127.0.3.32 dev lo
-# AZ3-SERVICE-WORKER-3
+# R1-AZ3-SERVICE-WORKER-3
 ip addr add 127.0.3.33 dev lo
 route add -host 127.0.3.33 dev lo
-# AZ3-SERVICE-CONTROL-1
+# R1-AZ3-SERVICE-CONTROL-1
 ip addr add 127.0.3.41 dev lo
 route add -host 127.0.3.41 dev lo
-# AZ3-SERVICE-CONTROL-2
+# R1-AZ3-SERVICE-CONTROL-2
 ip addr add 127.0.3.42 dev lo
 route add -host 127.0.3.42 dev lo
-# AZ3-SERVICE-CONTROL-3
+# R1-AZ3-SERVICE-CONTROL-3
 ip addr add 127.0.3.43 dev lo
 route add -host 127.0.3.43 dev lo
+#### End of adding ipaddresses
 
-# delete data path
+#### delete data path
 rm -rf /vagrant/data/*
+#### End of delete data path
 
-# recreate data path folders
+#### recreate data path folders
 ### REGION1 ###
 ## Availability Zone 1 ##
 # Control Nodes #
@@ -212,7 +214,11 @@ mkdir -p /vagrant/data/REGION1/AZ3/INFRA/WORKER/VAULT/2
 mkdir -p /vagrant/data/REGION1/AZ3/INFRA/WORKER/NOMAD/3
 mkdir -p /vagrant/data/REGION1/AZ3/INFRA/WORKER/CONSUL/3
 mkdir -p /vagrant/data/REGION1/AZ3/INFRA/WORKER/VAULT/3
+#### End of recreate data folders
 
+#### Configuring Vault Infra environments
+### Region 1
+## AZ1, AZ2, and AZ3
 # starting Region 1 infra control vault servers
 vault server -config=/vagrant/configs/REGION1/AZ1/INFRA/CONTROL/VAULT/1.hcl &> /vagrant/data/REGION1/AZ1/INFRA/CONTROL/VAULT/1/log.txt & 
 echo "sleeping before vault node 1 init and unseal"
@@ -240,17 +246,16 @@ VAULT_ADDR="http://127.0.3.10:8200" vault operator unseal  `cat /vagrant/data/RE
 
 #cat /vagrant/data/REGION1/AZ1/INFRA/CONTROL/VAULT/1/init.json | jq '.root_token'
 VAULT_ADDR="http://127.0.1.10:8200" VAULT_TOKEN=`cat /vagrant/data/REGION1/AZ1/INFRA/CONTROL/VAULT/1/init.json | jq -r '.root_token'` vault operator raft list-peers
+#### end of Configuring Vault Infra environments
 
-# Things to do:
-## generate consul connect ca on ca secrets engine in vault
+
+#### generate consul connect ca on ca secrets engine in vault for consul
+### Region 1
+## AZ1, AZ2, AZ3
 # import policy to allow consul to generate certificate authority configuration
 VAULT_ADDR="http://127.0.2.10:8200" VAULT_TOKEN=`cat /vagrant/data/REGION1/AZ1/INFRA/CONTROL/VAULT/1/init.json | jq -r '.root_token'` vault policy write connect-ca /vagrant/configs/REGION1/AZ1/INFRA/CONTROL/VAULT/consul-ca-policy.hcl
 # create vault token with policy for consul to use to generate ca and sign certificates
 VAULT_ADDR="http://127.0.2.10:8200" VAULT_TOKEN=`cat /vagrant/data/REGION1/AZ1/INFRA/CONTROL/VAULT/1/init.json | jq -r '.root_token'` vault token create -policy=connect-ca -orphan -format=json &> /vagrant/data/REGION1/AZ1/INFRA/CONTROL/CONSUL/1/token.json
-# copy config before updating it with vault token
-cp /vagrant/configs/REGION1/AZ1/INFRA/CONTROL/CONSUL/1.hcl /vagrant/data/REGION1/AZ1/INFRA/CONTROL/CONSUL/1/config.hcl
-# replace vault token in config placeholder with generated token value
-sed -i "s/consul-ca-vault-token/$(cat /vagrant/data/REGION1/AZ1/INFRA/CONTROL/CONSUL/1/token.json | jq -r '.auth.client_token')/" /vagrant/data/REGION1/AZ1/INFRA/CONTROL/CONSUL/1/config.hcl
 ## setup consul servers with vault ca and auto config settings
 # https://learn.hashicorp.com/tutorials/consul/vault-pki-consul-secure-tls Use this to generate ca certificate for consul ahead of time
 # configure root ca pki engine
@@ -269,14 +274,50 @@ VAULT_ADDR="http://127.0.2.10:8200" VAULT_TOKEN=`cat /vagrant/data/REGION1/AZ1/I
 VAULT_ADDR="http://127.0.2.10:8200" VAULT_TOKEN=`cat /vagrant/data/REGION1/AZ1/INFRA/CONTROL/VAULT/1/init.json | jq -r '.root_token'` vault write int_consul_ca/intermediate/set-signed certificate=@/vagrant/data/REGION1/AZ1/INFRA/CONTROL/CONSUL/intermediate.cert.pem
 # Create role for generating server certificates for consul
 VAULT_ADDR="http://127.0.2.10:8200" VAULT_TOKEN=`cat /vagrant/data/REGION1/AZ1/INFRA/CONTROL/VAULT/1/init.json | jq -r '.root_token'` vault write int_consul_ca/roles/consul-dc1 allowed_domains="R1.consul" allow_subdomains=true generate_lease=true max_ttl="720h"
-
 # generate server ca certificates
+VAULT_ADDR="http://127.0.2.10:8200" VAULT_TOKEN=`cat /vagrant/data/REGION1/AZ1/INFRA/CONTROL/VAULT/1/init.json | jq -r '.root_token'` vault write int_consul_ca/issue/consul-dc1 common_name="server.R1.consul" ttl="24h" | tee /vagrant/data/REGION1/AZ1/INFRA/CONTROL/CONSUL/server.txt &> /dev/null
+# output signed agent certificate file for consul config
+grep -Pzo "(?s)(?<=certificate)[^\-]*.*?END CERTIFICATE[^\n]*\n" /vagrant/data/REGION1/AZ1/INFRA/CONTROL/CONSUL/server.txt | sed 's/^\s*-/-/g' > /vagrant/data/REGION1/AZ1/INFRA/CONTROL/CONSUL/agent.crt
+# output ca certificate for consul config
+grep -Pzo "(?s)(?<=issuing_ca)[^\-]*.*?END CERTIFICATE[^\n]*\n" /vagrant/data/REGION1/AZ1/INFRA/CONTROL/CONSUL/server.txt | sed 's/^\s*-/-/g' > /vagrant/data/REGION1/AZ1/INFRA/CONTROL/CONSUL/ca.crt
+# output agent private key file for consul config
+grep -Pzo "(?s)(?<=private_key)[^\-]*.*?END RSA PRIVATE KEY[^\n]*\n" /vagrant/data/REGION1/AZ1/INFRA/CONTROL/CONSUL/server.txt | sed 's/^\s*-/-/g' > /vagrant/data/REGION1/AZ1/INFRA/CONTROL/CONSUL/agent.key
+# copy certificates to other consul server paths
+cp /vagrant/data/REGION1/AZ1/INFRA/CONTROL/CONSUL/agent.crt /vagrant/data/REGION1/AZ2/INFRA/CONTROL/CONSUL/agent.crt
+cp /vagrant/data/REGION1/AZ1/INFRA/CONTROL/CONSUL/agent.crt /vagrant/data/REGION1/AZ3/INFRA/CONTROL/CONSUL/agent.crt
+cp /vagrant/data/REGION1/AZ1/INFRA/CONTROL/CONSUL/agent.key /vagrant/data/REGION1/AZ2/INFRA/CONTROL/CONSUL/agent.key
+cp /vagrant/data/REGION1/AZ1/INFRA/CONTROL/CONSUL/agent.key /vagrant/data/REGION1/AZ3/INFRA/CONTROL/CONSUL/agent.key
+cp /vagrant/data/REGION1/AZ1/INFRA/CONTROL/CONSUL/ca.crt /vagrant/data/REGION1/AZ2/INFRA/CONTROL/CONSUL/ca.crt
+cp /vagrant/data/REGION1/AZ1/INFRA/CONTROL/CONSUL/ca.crt /vagrant/data/REGION1/AZ3/INFRA/CONTROL/CONSUL/ca.crt
+# copy config before updating it with vault token
+cp /vagrant/configs/REGION1/AZ1/INFRA/CONTROL/CONSUL/1.hcl /vagrant/data/REGION1/AZ1/INFRA/CONTROL/CONSUL/1/config.hcl
+cp /vagrant/configs/REGION1/AZ2/INFRA/CONTROL/CONSUL/1.hcl /vagrant/data/REGION1/AZ2/INFRA/CONTROL/CONSUL/1/config.hcl
+cp /vagrant/configs/REGION1/AZ3/INFRA/CONTROL/CONSUL/1.hcl /vagrant/data/REGION1/AZ3/INFRA/CONTROL/CONSUL/1/config.hcl
 
+# replace vault token in config placeholder with generated token value
+sed -i "s/consul-ca-vault-token/$(cat /vagrant/data/REGION1/AZ1/INFRA/CONTROL/CONSUL/1/token.json | jq -r '.auth.client_token')/" /vagrant/data/REGION1/AZ1/INFRA/CONTROL/CONSUL/1/config.hcl
+sed -i "s/consul-ca-vault-token/$(cat /vagrant/data/REGION1/AZ1/INFRA/CONTROL/CONSUL/1/token.json | jq -r '.auth.client_token')/" /vagrant/data/REGION1/AZ2/INFRA/CONTROL/CONSUL/1/config.hcl
+sed -i "s/consul-ca-vault-token/$(cat /vagrant/data/REGION1/AZ1/INFRA/CONTROL/CONSUL/1/token.json | jq -r '.auth.client_token')/" /vagrant/data/REGION1/AZ3/INFRA/CONTROL/CONSUL/1/config.hcl
+# start consul servers with connect ca in vault, static gossip encryption key and server certs from vault ca
+consul agent -config-file=/vagrant/data/REGION1/AZ1/INFRA/CONTROL/CONSUL/1/config.hcl &> /vagrant/data/REGION1/AZ1/INFRA/CONTROL/CONSUL/1/log.txt &
+consul agent -config-file=/vagrant/data/REGION1/AZ2/INFRA/CONTROL/CONSUL/1/config.hcl &> /vagrant/data/REGION1/AZ2/INFRA/CONTROL/CONSUL/1/log.txt &
+consul agent -config-file=/vagrant/data/REGION1/AZ3/INFRA/CONTROL/CONSUL/1/config.hcl &> /vagrant/data/REGION1/AZ3/INFRA/CONTROL/CONSUL/1/log.txt &
+# Check Region 1 control consul cluster member status
+sleep 10
+CONSUL_HTTP_ADDR="http://127.0.1.10:8500" consul members
+
+# Bootstrap consul ACL configuration
+
+# set default consul policies
+
+# create test consul client config usage maybe nomad auto clustering
+
+# start consul servers with gossip key and ca certificate generated by vault for tls communication - will come back to this
 # https://learn.hashicorp.com/tutorials/consul/docker-compose-auto-config?in=consul/security use this to configure auto config for servers and just provide jwt to them for gossip key, tls cert, and other config values
 
-# start consul servers with gossip key and ca certificate generated by vault for tls communication
-
-## Setup Nomad Cluster
+#### Setup Nomad clusters
+### Region 1
+## AZ1, AZ2, AZ3
 # starting Region 1 infra control nomad servers
 nomad agent -config=/vagrant/configs/REGION1/AZ1/INFRA/CONTROL/NOMAD/1.hcl &> /vagrant/data/REGION1/AZ1/INFRA/CONTROL/NOMAD/1/log.txt &
 nomad agent -config=/vagrant/configs/REGION1/AZ2/INFRA/CONTROL/NOMAD/1.hcl &> /vagrant/data/REGION1/AZ2/INFRA/CONTROL/NOMAD/1/log.txt &
@@ -285,6 +326,8 @@ nomad agent -config=/vagrant/configs/REGION1/AZ3/INFRA/CONTROL/NOMAD/1.hcl &> /v
 # Check Region 1 control nomad cluster member status
 sleep 10
 NOMAD_ADDR="http://127.0.3.10:4646" nomad server members
+
+#### Things to do:
 
 ## setup acl on nomad
 ## generate vault nomad intergraiton
@@ -299,9 +342,16 @@ NOMAD_ADDR="http://127.0.3.10:4646" nomad server members
 ## submit service worker instance job to IW hosts
 ## submit docker job to Service nomad control plan using consul and vault to get secrets with terraform
 ## validate job accessibility and mapping to loopback ip address
+
+
+
 ## spin up second region
 ## federate infra control plane
+
+
+
 ## create new job to deploy to multiple regions active active
 ## create new job to deploy to multiple regions active passive
 ## create new job to deploy to multiple regions active failover
 
+### Checking Ports: sudo netstat -plnt

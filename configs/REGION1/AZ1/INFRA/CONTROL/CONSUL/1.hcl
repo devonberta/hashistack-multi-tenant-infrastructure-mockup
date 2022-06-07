@@ -1,4 +1,34 @@
-
+# Setting the Region to R1 to match the server certificate datacenter value
+datacenter = "R1"
+# server specific data path value
+data_dir = "/vagrant/data/REGION1/AZ1/INFRA/CONTROL/CONSUL/1/"
+# Just name of server that consul will register as, should be unique in each config when running multiple agents locally
+node_name = "R1-AZ1-INFRA-CONTROL-1"
+# set to make this agent a server
+server = true
+# addresses to use for various interface settings
+advertise_addr = "127.0.1.10"
+client_addr    = "127.0.1.10"
+bind_addr      = "127.0.1.10"
+# used for joining the other hosts to the cluster
+retry_join     = ["127.0.2.10","127.0.3.10"]
+# number of servers to expect before bootstrapping the cluster, three servers total
+bootstrap_expect = 3
+# verify the certificate presented by servers connecting
+verify_incoming = true
+# verify the certificate presented by servers connecint too
+verify_outgoing = true
+# verify the hostname of server certificates
+verify_server_hostname = true
+# certificate authority cert to use for validation of trusted certs
+ca_file = "/vagrant/data/REGION1/AZ1/INFRA/CONTROL/CONSUL/ca.crt"
+# certificate to be used by the server
+cert_file = "/vagrant/data/REGION1/AZ1/INFRA/CONTROL/CONSUL/agent.crt"
+# private key of server certificate
+key_file = "/vagrant/data/REGION1/AZ1/INFRA/CONTROL/CONSUL/agent.key"
+auto_encrypt {
+  allow_tls = true
+}
 
 ## Service mesh CA configuration
 connect {

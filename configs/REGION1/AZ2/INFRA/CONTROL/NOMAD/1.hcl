@@ -1,5 +1,5 @@
 name       = "R1-AZ2-INFRA-CONTROL-1"
-region     = "Region1"
+region     = "R1"
 datacenter = "AZ2"
 data_dir = "/vagrant/data/REGION1/AZ2/INFRA/CONTROL/NOMAD/1"
 bind_addr = "127.0.2.10"
