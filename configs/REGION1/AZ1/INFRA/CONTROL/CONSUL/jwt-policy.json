@@ -1,0 +1,7 @@
+{
+    "path": {
+      "identity/oidc/token/oidc-role-R1-AZ1-INFRA-HOST-1": {
+        "policy": "read"
+      }
+    }
+}

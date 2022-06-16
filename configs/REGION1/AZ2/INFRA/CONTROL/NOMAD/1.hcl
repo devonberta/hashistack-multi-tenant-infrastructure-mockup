@@ -12,9 +12,22 @@ server {
   enabled          = true
   bootstrap_expect = 3
   encrypt = "o04ySMDpvZvHS6kVPEFTAHpHPf2A1y+cRoqO6WFUUs4="
-  server_join {
-    retry_join     = [ "127.0.1.10", "127.0.3.10" ]
-    retry_max      = 0
-    retry_interval = "30s"
-  }
+#  server_join {
+#    retry_join     = [ "127.0.1.10", "127.0.3.10" ]
+#    retry_max      = 0
+#    retry_interval = "30s"
+#  }
+}
+
+client {
+  enabled       = true
+}
+
+consul {
+  address             = "127.0.2.10:8500"
+  server_service_name = "nomad"
+  client_service_name = "nomad-client"
+  auto_advertise      = true
+  server_auto_join    = true
+  client_auto_join    = true
 }

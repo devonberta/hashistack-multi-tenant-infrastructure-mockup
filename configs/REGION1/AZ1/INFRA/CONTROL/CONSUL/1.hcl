@@ -26,9 +26,9 @@ ca_file = "/vagrant/data/REGION1/AZ1/INFRA/CONTROL/CONSUL/ca.crt"
 cert_file = "/vagrant/data/REGION1/AZ1/INFRA/CONTROL/CONSUL/agent.crt"
 # private key of server certificate
 key_file = "/vagrant/data/REGION1/AZ1/INFRA/CONTROL/CONSUL/agent.key"
-auto_encrypt {
-  allow_tls = true
-}
+#auto_encrypt {
+#  allow_tls = true
+#}
 
 ## Service mesh CA configuration
 connect {
@@ -45,4 +45,26 @@ connect {
         private_key_type = "rsa"
         private_key_bits = 2048
     }
+}
+
+auto_config {
+  authorization {
+    enabled = true
+    static {
+      oidc_discovery_url = "http://127.0.1.10:8200/v1/identity/oidc"
+      bound_issuer = "http://127.0.1.10:8200/v1/identity/oidc",
+      bound_audiences = ["R1-AZ1-INFRA-CONTROL-CONSUL"],
+      claim_mappings {
+        "/consul/hostname" = "node_name"
+      }
+      claim_assertions = [ 
+        "value.node_name == \"${node}\"" 
+      ]      
+    }
+  }
+}
+
+ports {
+  https = 8501
+  grpc  = 8502
 }
