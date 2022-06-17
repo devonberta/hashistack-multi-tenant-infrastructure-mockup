@@ -1,4 +1,7 @@
 name       = "R1-AZ3-INFRA-CONTROL-1"
+ui {
+  enabled =  true
+}
 region     = "R1"
 datacenter = "AZ3"
 data_dir = "/vagrant/data/REGION1/AZ3/INFRA/CONTROL/NOMAD/1"
@@ -30,4 +33,10 @@ consul {
   auto_advertise      = true
   server_auto_join    = true
   client_auto_join    = true
+}
+
+plugin "raw_exec" {
+  config {
+    enabled = true
+  }
 }

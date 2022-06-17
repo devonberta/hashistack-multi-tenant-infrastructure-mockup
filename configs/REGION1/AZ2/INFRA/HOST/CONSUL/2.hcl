@@ -1,15 +1,15 @@
 # Setting the Region to R1 to match the server certificate datacenter value
 datacenter = "R1"
 # server specific data path value
-data_dir = "/vagrant/data/REGION1/AZ1/INFRA/HOST/CONSUL/1/"
+data_dir = "/vagrant/data/REGION1/AZ2/INFRA/HOST/CONSUL/2/"
 # Just name of server that consul will register as, should be unique in each config when running multiple agents locally
-node_name = "R1-AZ1-INFRA-HOST-1"
+node_name = "R1-AZ2-INFRA-HOST-2"
 # set to make this agent not a server
 server = false
 # addresses to use for various interface settings
-advertise_addr = "127.0.1.11"
-client_addr    = "127.0.1.11"
-bind_addr      = "127.0.1.11"
+advertise_addr = "127.0.2.12"
+client_addr    = "127.0.2.12"
+bind_addr      = "127.0.2.12"
 # use jwt token to authorize itself to consul servers which will then generate connect certificates, tls certificates and gossip key share.
 #auto_config {
 #    enabled = true

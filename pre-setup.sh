@@ -12,3 +12,9 @@ unzip ~/vault.zip -d /bin/
 unzip ~/terraform.zip -d /bin/
 
 setcap cap_ipc_lock=+ep /bin/vault
+
+add-apt-repository ppa:vbernat/haproxy-1.8 -y
+apt-get update
+apt-get install haproxy -y
+cp /vagrant/configs/haproxy_host/haproxy.cfg /etc/haproxy/haproxy.cfg
+systemctl restart haproxy
