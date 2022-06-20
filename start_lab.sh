@@ -367,6 +367,18 @@ consul agent -config-file=/vagrant/configs/REGION1/AZ3/INFRA/HOST/CONSUL/3.hcl &
 
 sleep 10
 CONSUL_HTTP_ADDR="http://127.0.1.10:8500" consul members
+echo "Starting IW Consul Client"
+consul agent -config-file=/vagrant/configs/REGION1/AZ1/INFRA/WORKER/CONSUL/1.hcl &> /vagrant/data/REGION1/AZ1/INFRA/WORKER/CONSUL/1/log.txt &
+consul agent -config-file=/vagrant/configs/REGION1/AZ1/INFRA/WORKER/CONSUL/2.hcl &> /vagrant/data/REGION1/AZ1/INFRA/WORKER/CONSUL/2/log.txt &
+consul agent -config-file=/vagrant/configs/REGION1/AZ1/INFRA/WORKER/CONSUL/3.hcl &> /vagrant/data/REGION1/AZ1/INFRA/WORKER/CONSUL/3/log.txt &
+consul agent -config-file=/vagrant/configs/REGION1/AZ2/INFRA/WORKER/CONSUL/1.hcl &> /vagrant/data/REGION1/AZ2/INFRA/WORKER/CONSUL/1/log.txt &
+consul agent -config-file=/vagrant/configs/REGION1/AZ2/INFRA/WORKER/CONSUL/2.hcl &> /vagrant/data/REGION1/AZ2/INFRA/WORKER/CONSUL/2/log.txt &
+consul agent -config-file=/vagrant/configs/REGION1/AZ2/INFRA/WORKER/CONSUL/3.hcl &> /vagrant/data/REGION1/AZ2/INFRA/WORKER/CONSUL/3/log.txt &
+consul agent -config-file=/vagrant/configs/REGION1/AZ3/INFRA/WORKER/CONSUL/1.hcl &> /vagrant/data/REGION1/AZ3/INFRA/WORKER/CONSUL/1/log.txt &
+consul agent -config-file=/vagrant/configs/REGION1/AZ3/INFRA/WORKER/CONSUL/2.hcl &> /vagrant/data/REGION1/AZ3/INFRA/WORKER/CONSUL/2/log.txt &
+consul agent -config-file=/vagrant/configs/REGION1/AZ3/INFRA/WORKER/CONSUL/3.hcl &> /vagrant/data/REGION1/AZ3/INFRA/WORKER/CONSUL/3/log.txt &
+sleep 10
+CONSUL_HTTP_ADDR="http://127.0.1.10:8500" consul members
 # start IH1 nomad client
 echo "Starting IH Nomad Client"
 nomad agent -config=/vagrant/configs/REGION1/AZ1/INFRA/HOST/NOMAD/1.hcl &> /vagrant/data/REGION1/AZ1/INFRA/HOST/NOMAD/1/log.txt &
@@ -379,7 +391,20 @@ nomad agent -config=/vagrant/configs/REGION1/AZ3/INFRA/HOST/NOMAD/1.hcl &> /vagr
 nomad agent -config=/vagrant/configs/REGION1/AZ3/INFRA/HOST/NOMAD/2.hcl &> /vagrant/data/REGION1/AZ3/INFRA/HOST/NOMAD/2/log.txt &
 nomad agent -config=/vagrant/configs/REGION1/AZ3/INFRA/HOST/NOMAD/3.hcl &> /vagrant/data/REGION1/AZ3/INFRA/HOST/NOMAD/3/log.txt &
 sleep 10
-NOMAD_ADDR="http://127.0.3.10:4646" nomad server members
+NOMAD_ADDR="http://127.0.3.10:4646" nomad node status
+#
+echo "Starting IW Nomad Client"
+nomad agent -config=/vagrant/configs/REGION1/AZ1/INFRA/WORKER/NOMAD/1.hcl &> /vagrant/data/REGION1/AZ1/INFRA/WORKER/NOMAD/1/log.txt &
+nomad agent -config=/vagrant/configs/REGION1/AZ1/INFRA/WORKER/NOMAD/2.hcl &> /vagrant/data/REGION1/AZ1/INFRA/WORKER/NOMAD/2/log.txt &
+nomad agent -config=/vagrant/configs/REGION1/AZ1/INFRA/WORKER/NOMAD/3.hcl &> /vagrant/data/REGION1/AZ1/INFRA/WORKER/NOMAD/3/log.txt &
+nomad agent -config=/vagrant/configs/REGION1/AZ2/INFRA/WORKER/NOMAD/1.hcl &> /vagrant/data/REGION1/AZ2/INFRA/WORKER/NOMAD/1/log.txt &
+nomad agent -config=/vagrant/configs/REGION1/AZ2/INFRA/WORKER/NOMAD/2.hcl &> /vagrant/data/REGION1/AZ2/INFRA/WORKER/NOMAD/2/log.txt &
+nomad agent -config=/vagrant/configs/REGION1/AZ2/INFRA/WORKER/NOMAD/3.hcl &> /vagrant/data/REGION1/AZ2/INFRA/WORKER/NOMAD/3/log.txt &
+nomad agent -config=/vagrant/configs/REGION1/AZ3/INFRA/WORKER/NOMAD/1.hcl &> /vagrant/data/REGION1/AZ3/INFRA/WORKER/NOMAD/1/log.txt &
+nomad agent -config=/vagrant/configs/REGION1/AZ3/INFRA/WORKER/NOMAD/2.hcl &> /vagrant/data/REGION1/AZ3/INFRA/WORKER/NOMAD/2/log.txt &
+nomad agent -config=/vagrant/configs/REGION1/AZ3/INFRA/WORKER/NOMAD/3.hcl &> /vagrant/data/REGION1/AZ3/INFRA/WORKER/NOMAD/3/log.txt &
+sleep 10
+NOMAD_ADDR="http://127.0.3.10:4646" nomad node status
 ## check IH and IW hosts register to consul and nomad as expected
 ## write job spec for service control plane instances of vault, nomad, and consul
 ## write job spec for service worker instances with vault agent, nomad, and consul

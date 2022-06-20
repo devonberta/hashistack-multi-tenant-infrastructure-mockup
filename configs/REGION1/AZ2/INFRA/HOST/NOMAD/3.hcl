@@ -11,6 +11,9 @@ advertise {
 
 client {
   enabled       = true
+  meta {
+    role = "IH"
+  }
 }
 
 consul {
