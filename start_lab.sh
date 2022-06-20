@@ -379,7 +379,7 @@ consul agent -config-file=/vagrant/configs/REGION1/AZ3/INFRA/WORKER/CONSUL/2.hcl
 consul agent -config-file=/vagrant/configs/REGION1/AZ3/INFRA/WORKER/CONSUL/3.hcl &> /vagrant/data/REGION1/AZ3/INFRA/WORKER/CONSUL/3/log.txt &
 sleep 10
 CONSUL_HTTP_ADDR="http://127.0.1.10:8500" consul members
-# start IH1 nomad client
+# start IH nomad client
 echo "Starting IH Nomad Client"
 nomad agent -config=/vagrant/configs/REGION1/AZ1/INFRA/HOST/NOMAD/1.hcl &> /vagrant/data/REGION1/AZ1/INFRA/HOST/NOMAD/1/log.txt &
 nomad agent -config=/vagrant/configs/REGION1/AZ1/INFRA/HOST/NOMAD/2.hcl &> /vagrant/data/REGION1/AZ1/INFRA/HOST/NOMAD/2/log.txt &
@@ -392,7 +392,7 @@ nomad agent -config=/vagrant/configs/REGION1/AZ3/INFRA/HOST/NOMAD/2.hcl &> /vagr
 nomad agent -config=/vagrant/configs/REGION1/AZ3/INFRA/HOST/NOMAD/3.hcl &> /vagrant/data/REGION1/AZ3/INFRA/HOST/NOMAD/3/log.txt &
 sleep 10
 NOMAD_ADDR="http://127.0.3.10:4646" nomad node status
-#
+#start IW nomad client
 echo "Starting IW Nomad Client"
 nomad agent -config=/vagrant/configs/REGION1/AZ1/INFRA/WORKER/NOMAD/1.hcl &> /vagrant/data/REGION1/AZ1/INFRA/WORKER/NOMAD/1/log.txt &
 nomad agent -config=/vagrant/configs/REGION1/AZ1/INFRA/WORKER/NOMAD/2.hcl &> /vagrant/data/REGION1/AZ1/INFRA/WORKER/NOMAD/2/log.txt &
@@ -406,10 +406,11 @@ nomad agent -config=/vagrant/configs/REGION1/AZ3/INFRA/WORKER/NOMAD/3.hcl &> /va
 sleep 10
 NOMAD_ADDR="http://127.0.3.10:4646" nomad node status
 ## check IH and IW hosts register to consul and nomad as expected
-## write job spec for service control plane instances of vault, nomad, and consul
-## write job spec for service worker instances with vault agent, nomad, and consul
-## submit service control plane jobs to IH hosts
-## submit service worker instance job to IW hosts
+## write job spec for tenant control plane instances of vault, nomad, and consul
+# - example command with variable at command line for tenant number: nomad job run -var="tenant_id=1" example.nomad
+## write job spec for tenant worker instances with vault agent, nomad, and consul
+## submit tenant control plane jobs to IH hosts
+## submit tenant worker instance job to IW hosts
 ## submit docker job to Service nomad control plan using consul and vault to get secrets with terraform
 ## validate job accessibility and mapping to loopback ip address
 
