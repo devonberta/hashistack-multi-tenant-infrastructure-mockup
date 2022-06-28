@@ -2,7 +2,7 @@
 
 ## Layers
 * Control plane:
-    - Runs noamd scheduler servers
+    - Runs nomad scheduler servers
     - Runs Consul servers for service discovery, health checks and connectivity
     - Runs Vault for secure bootstrapping and identity management of infrastructure
 * Infrastructure workers:
