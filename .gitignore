@@ -1,2 +1,4 @@
 .vagrant/*
 data/*
+temp/*
+simple-demo/data/*
