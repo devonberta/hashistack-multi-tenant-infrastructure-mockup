@@ -4,7 +4,56 @@ pkill -f nomad
 pkill -f consul
 pkill -f vault
 sleep 5
+
+#psuedo code for multiple regions
+# for loop based on how many regions desired
+## inside of loop take index of loop and use for second octet in 127.x.0.0 ip space
+## When creating ips and generating configurations have set third octet ranges
+### 127.x.1.0 is control az 1
+### 127.x.2.0 is control az 2
+### 127.x.3.0 is control az 3
+### 127.x.4.0 is infrastructure workers
+### 127.x.5.0 is application workers
+## for loop generate configurations with static values in order of deployment
+###    Bash example of EOF with variable in it. Send this to a file for configs
+###    i=ok
+###    
+###    # This prints "Bwah ok"
+###    cat <<EOF
+###    Bwah $i
+###    EOF
+###    cat >/etc/apache2/conf.d/mod_status.conf <<EOF
+###    <Location ${STATUS_URI}>
+###        SetHandler server-status
+###        Order deny,allow
+###        Deny from all
+###        Allow from ${MONITOR_IP}
+###    </Location>
+###    EOF
+
+# ip list
+ips=("127.0.0.20" "127.0.0.21")
+
 #### Adding ip addresses used in the lab environment
+system_os=$(uname)
+if [[ $system_os == Linux ]]; then
+    os="linux"
+    for ip in ${ips[@]}; do
+        ip addr add ${ip} dev lo
+        route add -host ${ip} dev lo
+    done
+elif [[ $system_os == darwin ]]; then
+    os="darwin"
+    for ip in ${ips[@]}; do
+        sudo ifconfig lo0 alias ${ip}/24 up
+    done
+fi
+
+
+
+# mac os example of adding ips
+# sudo ifconfig en0 alias 128.133.123.83/24 up
+
 ### Region 1 ###
 ## Availability Zone 1 ##
 # R1-AZ1-INFRA-CONTROL-1
